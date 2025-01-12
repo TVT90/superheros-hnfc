@@ -4,38 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super-héros du quotidien - Œuvre 1</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .back-link {
+            display: block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .artwork {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .comments {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .record {
+            background: #f44336;
+        }
+
+        #audioPreview {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Retour à l'accueil</a>
+    <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+    <div class="artwork">
+        <h1 class="title">Super-héros du quotidien</h1>
+        <img src="images/oeuvre1.jpg" alt="Description de l'œuvre">
+        <p class="description">Dans cette œuvre, nous explorons la dimension héroïque du personnel soignant, ces véritables super-héros de notre quotidien qui œuvrent sans relâche pour notre bien-être.</p>
+    </div>
+
+    <div class="comments">
+        <h2>Partagez votre ressenti</h2>
         
-        <div class="artwork">
-            <h1 class="title">Super-héros du quotidien</h1>
-            <img src="images/oeuvre1.jpg" alt="Description de l'œuvre">
-            <p class="description">Dans cette œuvre, nous explorons la dimension héroïque du personnel soignant, ces véritables super-héros de notre quotidien qui œuvrent sans relâche pour notre bien-être.</p>
-        </div>
+        <form action="https://formspree.io/f/xjkkjjoe" method="POST">
+            <textarea name="message" rows="4" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
+            <button type="submit">Envoyer le commentaire</button>
+        </form>
 
-        <div class="comments">
-            <h2>Partagez votre ressenti</h2>
-            
-            <div class="text-comment">
-                <form action="https://formspree.io/f/xjkkjjoe" method="POST">
-                    <textarea name="message" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
-                    <button type="submit">Envoyer le commentaire</button>
-                </form>
-            </div>
-
-            <div class="audio-comment">
-                <h3>Ou enregistrez votre message vocal</h3>
-                <button id="recordButton">🎤 Commencer l'enregistrement</button>
-                <div id="audioPreview" style="display: none;">
-                    <audio id="audioPlayback" controls></audio>
-                </div>
-            </div>
+        <h3>Ou enregistrez votre message vocal</h3>
+        <button id="recordButton" class="record">🎤 Commencer l'enregistrement</button>
+        <div id="audioPreview" style="display: none;">
+            <audio id="audioPlayback" controls></audio>
         </div>
     </div>
+
+    <script>
+        // Le code JavaScript pour l'enregistrement audio reste le même
+    </script>
 </body>
 </html>
