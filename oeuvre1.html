@@ -4,72 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super-héros du quotidien - Œuvre 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Montserrat', sans-serif;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            background-color: white;
+            padding: 40px 20px;
+            background-color: #f5f7fa;
+            line-height: 1.6;
+            color: #2c3e50;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .back-link {
-            display: block;
-            margin-bottom: 20px;
-            color: #666;
+            display: inline-block;
+            padding: 12px 24px;
+            margin-bottom: 30px;
+            color: #2c3e50;
             text-decoration: none;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .artwork {
             background: white;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .title {
-            color: #333;
-            font-size: 24px;
+            color: #2c3e50;
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
         }
 
         .description {
-            line-height: 1.6;
-            color: #666;
+            font-size: 1.1em;
+            color: #34495e;
+            max-width: 700px;
+            margin: 20px auto;
+            line-height: 1.8;
         }
 
         .comments {
             background: white;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            animation: slideUp 1s ease-out 0.2s forwards;
+        }
+
+        .comments h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .comments h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin: 30px 0 20px;
+            font-weight: 500;
         }
 
         textarea {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
             resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
         button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 1em;
+            padding: 12px 25px;
             border: none;
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            background: #2ecc71;
+            color: white;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .record {
-            background: #f44336;
+            background: #e74c3c;
         }
 
         #audioPreview {
             margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .artwork, .comments {
+                padding: 25px;
+            }
+            .title {
+                font-size: 2em;
+            }
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -86,7 +191,7 @@
         <h2>Partagez votre ressenti</h2>
         
         <form action="https://formspree.io/f/xjkkjjoe" method="POST">
-            <textarea name="message" rows="4" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
+            <textarea name="message" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
             <button type="submit">Envoyer le commentaire</button>
         </form>
 
@@ -98,7 +203,41 @@
     </div>
 
     <script>
-        // Le code JavaScript pour l'enregistrement audio reste le même
+        let mediaRecorder;
+        let audioChunks = [];
+        const recordButton = document.getElementById('recordButton');
+        const audioPreview = document.getElementById('audioPreview');
+        const audioPlayback = document.getElementById('audioPlayback');
+
+        recordButton.addEventListener('click', async () => {
+            if (recordButton.textContent === '🎤 Commencer l\'enregistrement') {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    
+                    mediaRecorder.ondataavailable = (e) => {
+                        audioChunks.push(e.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        audioPlayback.src = audioUrl;
+                        audioPreview.style.display = 'block';
+                    };
+
+                    audioChunks = [];
+                    mediaRecorder.start();
+                    recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
+                } catch (err) {
+                    console.error('Erreur lors de l\'accès au microphone:', err);
+                    alert('Impossible d\'accéder au microphone. Vérifiez que vous avez donné les permissions nécessaires.');
+                }
+            } else {
+                mediaRecorder.stop();
+                recordButton.textContent = '🎤 Commencer l\'enregistrement';
+            }
+        });
     </script>
 </body>
 </html>
