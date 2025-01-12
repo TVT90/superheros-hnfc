@@ -203,18 +203,33 @@
        const audioPreview = document.getElementById('audioPreview');
        const audioPlayback = document.getElementById('audioPlayback');
 
+       // Vérification de la disponibilité de l'API MediaRecorder
+       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+           alert('Votre navigateur ne supporte pas l\'enregistrement audio');
+           recordButton.disabled = true;
+       }
+
        recordButton.addEventListener('click', async () => {
            if (recordButton.textContent.includes('Commencer')) {
                try {
-                   const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                   // Vérification explicite des permissions
+                   const permissions = await navigator.permissions.query({ name: 'microphone' });
+                   console.log('Status des permissions:', permissions.state);
+
+                   const stream = await navigator.mediaDevices.getUserMedia({
+                       audio: true,
+                       video: false
+                   });
+
                    mediaRecorder = new MediaRecorder(stream);
-                   
                    mediaRecorder.ondataavailable = (e) => {
-                       audioChunks.push(e.data);
+                       if (e.data.size > 0) {
+                           audioChunks.push(e.data);
+                       }
                    };
 
                    mediaRecorder.onstop = () => {
-                       const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                       const audioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' });
                        const audioUrl = URL.createObjectURL(audioBlob);
                        audioPlayback.src = audioUrl;
                        audioPreview.style.display = 'block';
@@ -223,13 +238,20 @@
                    audioChunks = [];
                    mediaRecorder.start();
                    recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
+                   console.log('Enregistrement démarré');
+
                } catch (err) {
-                   console.error('Erreur microphone:', err);
-                   alert('Impossible d\'accéder au microphone. Vérifiez vos permissions.');
+                   console.error('Détails de l\'erreur:', err);
+                   if (err.name === 'NotAllowedError') {
+                       alert('L\'accès au microphone a été refusé. Veuillez vérifier vos permissions dans les paramètres du navigateur.');
+                   } else {
+                       alert('Erreur lors de l\'accès au microphone : ' + err.message);
+                   }
                }
            } else {
                mediaRecorder.stop();
                recordButton.textContent = '🎤 Commencer l\'enregistrement';
+               console.log('Enregistrement arrêté');
            }
        });
    </script>
