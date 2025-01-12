@@ -6,177 +6,7 @@
     <title>Super-héros du quotidien - Œuvre 1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-            background-color: #f8f9fa;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .artwork {
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transform: translateY(0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .artwork:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .artwork img {
-            max-width: 100%;
-            height: auto;
-            margin: 30px 0;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .title {
-            color: #2c3e50;
-            font-weight: 600;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .description {
-            line-height: 1.8;
-            color: #34495e;
-            font-size: 1.1em;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .comments {
-            margin-top: 60px;
-            text-align: left;
-            padding: 30px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .comments h2 {
-            color: #2c3e50;
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .interaction-section {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        .text-comment, .audio-comment {
-            margin: 20px 0;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: 'Montserrat', sans-serif;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        button {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            font-size: 1em;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .record {
-            background-color: #e74c3c;
-            color: white;
-        }
-
-        .submit-text, .submit-audio {
-            background-color: #2ecc71;
-            color: white;
-        }
-
-        .back-link {
-            display: inline-block;
-            padding: 10px 20px;
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 25px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .back-link:hover {
-            background: #f8f9fa;
-            transform: translateY(-2px);
-        }
-
-        #audioPreview {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-
-        audio {
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .title {
-                font-size: 2em;
-            }
-            .artwork {
-                padding: 20px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -191,66 +21,21 @@
         <div class="comments">
             <h2>Partagez votre ressenti</h2>
             
-            <div class="interaction-section">
-                <!-- Option texte avec Formspree -->
-                <div class="text-comment">
-                    <form action="https://formspree.io/f/xjkkjjoe" method="POST">
-                        <input type="hidden" name="oeuvre" value="Oeuvre 1">
-                        <textarea name="message" placeholder="Partagez vos impressions sur cette œuvre..." rows="4" required></textarea>
-                        <button type="submit" class="submit-text">Envoyer le commentaire</button>
-                    </form>
-                </div>
+            <div class="text-comment">
+                <form action="https://formspree.io/f/xjkkjjoe" method="POST">
+                    <textarea name="message" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
+                    <button type="submit">Envoyer le commentaire</button>
+                </form>
+            </div>
 
-                <!-- Option audio -->
-                <div class="audio-comment">
-                    <h3>Ou enregistrez votre message vocal</h3>
-                    <button id="recordButton" class="record">🎤 Commencer l'enregistrement</button>
-                    <div id="audioPreview" style="display: none;">
-                        <audio id="audioPlayback" controls></audio>
-                        <button class="submit-audio">Envoyer l'enregistrement</button>
-                    </div>
+            <div class="audio-comment">
+                <h3>Ou enregistrez votre message vocal</h3>
+                <button id="recordButton">🎤 Commencer l'enregistrement</button>
+                <div id="audioPreview" style="display: none;">
+                    <audio id="audioPlayback" controls></audio>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        // Le même code JavaScript qu'avant
-        let mediaRecorder;
-        let audioChunks = [];
-        const recordButton = document.getElementById('recordButton');
-        const audioPreview = document.getElementById('audioPreview');
-        const audioPlayback = document.getElementById('audioPlayback');
-
-        recordButton.addEventListener('click', async () => {
-            if (recordButton.textContent === '🎤 Commencer l\'enregistrement') {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    mediaRecorder = new MediaRecorder(stream);
-                    
-                    mediaRecorder.ondataavailable = (e) => {
-                        audioChunks.push(e.data);
-                    };
-
-                    mediaRecorder.onstop = () => {
-                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                        const audioUrl = URL.createObjectURL(audioBlob);
-                        audioPlayback.src = audioUrl;
-                        audioPreview.style.display = 'block';
-                    };
-
-                    audioChunks = [];
-                    mediaRecorder.start();
-                    recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
-                } catch (err) {
-                    console.error('Erreur lors de l\'accès au microphone:', err);
-                    alert('Impossible d\'accéder au microphone. Vérifiez que vous avez donné les permissions nécessaires.');
-                }
-            } else {
-                mediaRecorder.stop();
-                recordButton.textContent = '🎤 Commencer l\'enregistrement';
-            }
-        });
-    </script>
 </body>
 </html>
