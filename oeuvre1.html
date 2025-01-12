@@ -43,6 +43,39 @@
             background: white;
             border-radius: 8px;
         }
+        .record {
+            background-color: #ff4444;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .record:hover {
+            background-color: #cc0000;
+        }
+        .text-comment, .audio-comment {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .submit-text, .submit-audio {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -53,7 +86,60 @@
     </div>
     <div class="comments">
         <h2>Partagez votre ressenti</h2>
-        <!-- Ici nous ajouterons le système de commentaires -->
+        
+        <!-- Option texte -->
+        <div class="text-comment">
+            <textarea placeholder="Écrivez votre commentaire ici..." rows="4"></textarea>
+            <button class="submit-text">Envoyer</button>
+        </div>
+
+        <!-- Option audio -->
+        <div class="audio-comment">
+            <h3>Ou enregistrez votre message vocal</h3>
+            <button id="recordButton" class="record">🎤 Commencer l'enregistrement</button>
+            <div id="audioPreview" style="display: none;">
+                <audio id="audioPlayback" controls></audio>
+                <button class="submit-audio">Envoyer</button>
+            </div>
+        </div>
     </div>
+
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        const recordButton = document.getElementById('recordButton');
+        const audioPreview = document.getElementById('audioPreview');
+        const audioPlayback = document.getElementById('audioPlayback');
+
+        recordButton.addEventListener('click', async () => {
+            if (recordButton.textContent === '🎤 Commencer l\'enregistrement') {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    
+                    mediaRecorder.ondataavailable = (e) => {
+                        audioChunks.push(e.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        audioPlayback.src = audioUrl;
+                        audioPreview.style.display = 'block';
+                    };
+
+                    audioChunks = [];
+                    mediaRecorder.start();
+                    recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
+                } catch (err) {
+                    console.error('Erreur lors de l\'accès au microphone:', err);
+                    alert('Impossible d\'accéder au microphone. Vérifiez que vous avez donné les permissions nécessaires.');
+                }
+            } else {
+                mediaRecorder.stop();
+                recordButton.textContent = '🎤 Commencer l\'enregistrement';
+            }
+        });
+    </script>
 </body>
 </html>
