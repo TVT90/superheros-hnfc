@@ -1,265 +1,173 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Super-héros du quotidien - Œuvre 1</title>
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-   <style>
-       * {
-           box-sizing: border-box;
-           transition: all 0.3s ease;
-       }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super-héros du quotidien - Œuvre 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
 
-       body {
-           font-family: 'Montserrat', sans-serif;
-           max-width: 900px;
-           margin: 0 auto;
-           padding: 40px 20px;
-           background-color: #f5f7fa;
-           line-height: 1.6;
-           color: #2c3e50;
-           opacity: 0;
-           animation: fadeIn 0.8s ease-out forwards;
-       }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f5f7fa;
+            line-height: 1.6;
+            color: #2c3e50;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
 
-       @keyframes fadeIn {
-           from { opacity: 0; transform: translateY(20px); }
-           to { opacity: 1; transform: translateY(0); }
-       }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-       .back-link {
-           display: inline-block;
-           padding: 12px 24px;
-           margin-bottom: 30px;
-           color: #2c3e50;
-           text-decoration: none;
-           background: white;
-           border-radius: 50px;
-           box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-           font-weight: 500;
-       }
+        .back-link {
+            display: inline-block;
+            padding: 12px 24px;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-decoration: none;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-weight: 500;
+        }
 
-       .back-link:hover {
-           transform: translateY(-2px);
-           box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-       }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
 
-       .artwork {
-           background: white;
-           padding: 40px;
-           margin: 30px 0;
-           border-radius: 20px;
-           box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-       }
+        .artwork {
+            background: white;
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-       .title {
-           color: #2c3e50;
-           font-size: 2.5em;
-           font-weight: 600;
-           margin-bottom: 30px;
-           text-align: center;
-       }
+        .title {
+            color: #2c3e50;
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
-       .artwork img {
-           max-width: 100%;
-           height: auto;
-           border-radius: 15px;
-           box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-           margin: 20px 0;
-       }
+        .artwork img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
 
-       .description {
-           font-size: 1.1em;
-           color: #34495e;
-           max-width: 700px;
-           margin: 20px auto;
-           line-height: 1.8;
-           text-align: center;
-       }
+        .description {
+            font-size: 1.1em;
+            color: #34495e;
+            max-width: 700px;
+            margin: 20px auto;
+            line-height: 1.8;
+            text-align: center;
+        }
 
-       .comments {
-           background: white;
-           padding: 40px;
-           margin-top: 40px;
-           border-radius: 20px;
-           box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-       }
+        .comments {
+            background: white;
+            padding: 40px;
+            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-       .comments h2 {
-           color: #2c3e50;
-           font-size: 1.8em;
-           margin-bottom: 30px;
-           text-align: center;
-       }
+        .comments h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
-       .comments h3 {
-           color: #2c3e50;
-           font-size: 1.3em;
-           margin: 30px 0 20px;
-           text-align: center;
-       }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            resize: vertical;
+            min-height: 120px;
+        }
 
-       textarea {
-           width: 100%;
-           padding: 15px;
-           margin: 10px 0;
-           border: 2px solid #e0e0e0;
-           border-radius: 12px;
-           font-family: 'Montserrat', sans-serif;
-           font-size: 1em;
-           resize: vertical;
-           min-height: 120px;
-       }
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
 
-       textarea:focus {
-           outline: none;
-           border-color: #3498db;
-           box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-       }
+        button {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 1em;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #2ecc71;
+            color: white;
+            margin: 10px 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-       button {
-           font-family: 'Montserrat', sans-serif;
-           font-weight: 500;
-           font-size: 1em;
-           padding: 12px 25px;
-           border: none;
-           border-radius: 50px;
-           cursor: pointer;
-           transition: all 0.3s ease;
-           background: #2ecc71;
-           color: white;
-           margin: 10px 0;
-           display: inline-flex;
-           align-items: center;
-           justify-content: center;
-       }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-       button:hover:not(:disabled) {
-           transform: translateY(-2px);
-           box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-       }
-
-       button:disabled {
-           opacity: 0.5;
-           cursor: not-allowed;
-       }
-
-       .record {
-           background: #e74c3c;
-       }
-
-       audio {
-           width: 100%;
-           margin: 10px 0;
-       }
-
-       @media (max-width: 768px) {
-           body {
-               padding: 20px;
-           }
-           .title {
-               font-size: 2em;
-           }
-           .artwork, .comments {
-               padding: 25px;
-           }
-           button {
-               width: 100%;
-           }
-       }
-   </style>
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            .title {
+                font-size: 2em;
+            }
+            .artwork, .comments {
+                padding: 25px;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-   <a href="index.html" class="back-link">← Retour à l'accueil</a>
+    <a href="index.html" class="back-link">← Retour à l'accueil</a>
 
-   <div class="artwork">
-       <h1 class="title">Super-héros du quotidien</h1>
-       <img src="images/oeuvre1.png" alt="Super-héros du quotidien">
-       <p class="description">Dans cette œuvre, nous explorons la dimension héroïque du personnel soignant, ces véritables super-héros de notre quotidien qui œuvrent sans relâche pour notre bien-être.</p>
-   </div>
+    <div class="artwork">
+        <h1 class="title">Super-héros du quotidien</h1>
+        <img src="images/oeuvre1.png" alt="Super-héros du quotidien">
+        <p class="description">Dans cette œuvre, nous explorons la dimension héroïque du personnel soignant, ces véritables super-héros de notre quotidien qui œuvrent sans relâche pour notre bien-être.</p>
+    </div>
 
-   <div class="comments">
-       <h2>Partagez votre ressenti</h2>
-       
-       <div class="text-comment">
-           <form action="https://formspree.io/f/xjkkjjoe" method="POST">
-               <input type="hidden" name="oeuvre" value="Oeuvre 1">
-               <textarea name="message" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
-               <button type="submit">Envoyer le commentaire</button>
-           </form>
-       </div>
-
-       <div class="audio-comment">
-           <h3>Ou enregistrez votre message vocal</h3>
-           <button id="recordButton" class="record">🎤 Commencer l'enregistrement</button>
-           <div id="audioPreview" style="display: none;">
-               <audio id="audioPlayback" controls></audio>
-           </div>
-       </div>
-   </div>
-
-   <script>
-       const recordButton = document.getElementById('recordButton');
-       const audioPreview = document.getElementById('audioPreview');
-       const audioPlayback = document.getElementById('audioPlayback');
-
-       // Vérification de la compatibilité et de HTTPS
-       if (window.location.protocol !== 'https:') {
-           console.error('HTTPS requis pour l\'accès au microphone');
-           recordButton.disabled = true;
-           recordButton.title = 'HTTPS requis pour l\'enregistrement audio';
-       } else if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-           console.error('API MediaRecorder non supportée');
-           recordButton.disabled = true;
-           recordButton.title = 'Votre navigateur ne supporte pas l\'enregistrement audio';
-       } else {
-           let mediaRecorder;
-           let audioChunks = [];
-
-           recordButton.addEventListener('click', async () => {
-               if (recordButton.textContent.includes('Commencer')) {
-                   try {
-                       const stream = await navigator.mediaDevices.getUserMedia({
-                           audio: {
-                               echoCancellation: true,
-                               noiseSuppression: true
-                           }
-                       });
-                       
-                       mediaRecorder = new MediaRecorder(stream);
-                       
-                       mediaRecorder.ondataavailable = (e) => {
-                           audioChunks.push(e.data);
-                       };
-
-                       mediaRecorder.onstop = () => {
-                           const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                           const audioUrl = URL.createObjectURL(audioBlob);
-                           audioPlayback.src = audioUrl;
-                           audioPreview.style.display = 'block';
-                           
-                           // Arrêter toutes les pistes audio
-                           stream.getTracks().forEach(track => track.stop());
-                       };
-
-                       audioChunks = [];
-                       mediaRecorder.start();
-                       recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
-                       console.log('Enregistrement démarré');
-                   } catch (err) {
-                       console.error('Erreur détaillée:', err);
-                       alert('Erreur d\'accès au microphone: ' + err.message);
-                   }
-               } else {
-                   mediaRecorder.stop();
-                   recordButton.textContent = '🎤 Commencer l\'enregistrement';
-                   console.log('Enregistrement arrêté');
-               }
-           });
-       }
-   </script>
+    <div class="comments">
+        <h2>Partagez votre ressenti</h2>
+        
+        <form action="https://formspree.io/f/xjkkjjoe" method="POST">
+            <input type="hidden" name="oeuvre" value="Oeuvre 1">
+            <textarea name="message" placeholder="Partagez vos impressions sur cette œuvre..." required></textarea>
+            <button type="submit">Envoyer le commentaire</button>
+        </form>
+    </div>
 </body>
 </html>
