@@ -137,9 +137,14 @@
            justify-content: center;
        }
 
-       button:hover {
+       button:hover:not(:disabled) {
            transform: translateY(-2px);
            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+       }
+
+       button:disabled {
+           opacity: 0.5;
+           cursor: not-allowed;
        }
 
        .record {
@@ -197,41 +202,64 @@
    </div>
 
    <script>
-       let mediaRecorder;
-       let audioChunks = [];
        const recordButton = document.getElementById('recordButton');
        const audioPreview = document.getElementById('audioPreview');
        const audioPlayback = document.getElementById('audioPlayback');
 
-       recordButton.addEventListener('click', async () => {
-           if (recordButton.textContent.includes('Commencer')) {
-               try {
-                   const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                   mediaRecorder = new MediaRecorder(stream);
-                   
-                   mediaRecorder.ondataavailable = (e) => {
-                       audioChunks.push(e.data);
-                   };
+       // Vérification de la compatibilité et de HTTPS
+       if (window.location.protocol !== 'https:') {
+           console.error('HTTPS requis pour l\'accès au microphone');
+           recordButton.disabled = true;
+           recordButton.title = 'HTTPS requis pour l\'enregistrement audio';
+       } else if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+           console.error('API MediaRecorder non supportée');
+           recordButton.disabled = true;
+           recordButton.title = 'Votre navigateur ne supporte pas l\'enregistrement audio';
+       } else {
+           let mediaRecorder;
+           let audioChunks = [];
 
-                   mediaRecorder.onstop = () => {
-                       const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                       const audioUrl = URL.createObjectURL(audioBlob);
-                       audioPlayback.src = audioUrl;
-                       audioPreview.style.display = 'block';
-                   };
+           recordButton.addEventListener('click', async () => {
+               if (recordButton.textContent.includes('Commencer')) {
+                   try {
+                       const stream = await navigator.mediaDevices.getUserMedia({
+                           audio: {
+                               echoCancellation: true,
+                               noiseSuppression: true
+                           }
+                       });
+                       
+                       mediaRecorder = new MediaRecorder(stream);
+                       
+                       mediaRecorder.ondataavailable = (e) => {
+                           audioChunks.push(e.data);
+                       };
 
-                   audioChunks = [];
-                   mediaRecorder.start();
-                   recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
-               } catch (err) {
-                   console.error('Erreur microphone:', err);
-                   alert('Impossible d\'accéder au microphone. Vérifiez vos permissions.');
+                       mediaRecorder.onstop = () => {
+                           const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                           const audioUrl = URL.createObjectURL(audioBlob);
+                           audioPlayback.src = audioUrl;
+                           audioPreview.style.display = 'block';
+                           
+                           // Arrêter toutes les pistes audio
+                           stream.getTracks().forEach(track => track.stop());
+                       };
+
+                       audioChunks = [];
+                       mediaRecorder.start();
+                       recordButton.textContent = '⏹️ Arrêter l\'enregistrement';
+                       console.log('Enregistrement démarré');
+                   } catch (err) {
+                       console.error('Erreur détaillée:', err);
+                       alert('Erreur d\'accès au microphone: ' + err.message);
+                   }
+               } else {
+                   mediaRecorder.stop();
+                   recordButton.textContent = '🎤 Commencer l\'enregistrement';
+                   console.log('Enregistrement arrêté');
                }
-           } else {
-               mediaRecorder.stop();
-               recordButton.textContent = '🎤 Commencer l\'enregistrement';
-           }
-       });
+           });
+       }
    </script>
 </body>
 </html>
