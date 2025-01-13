@@ -1,198 +1,213 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super-héros du quotidien - Exposition interactive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Super-héros du quotidien - Exposition interactive</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <style>
+       * {
+           box-sizing: border-box;
+           margin: 0;
+           padding: 0;
+       }
 
-        html {
-            scroll-behavior: smooth;
-        }
+       html {
+           scroll-behavior: smooth;
+       }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f5f7fa;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
+       body {
+           font-family: 'Montserrat', sans-serif;
+           background-color: #f5f7fa;
+           color: #2c3e50;
+           line-height: 1.6;
+       }
 
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('images/oeuvre1.png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
+       .hero {
+           height: 100vh;
+           background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('images/oeuvre1.png');
+           background-size: cover;
+           background-position: center;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           text-align: center;
+           padding: 20px;
+       }
 
-        .hero-content {
-            max-width: 800px;
-            color: white;
-            animation: fadeIn 1.5s ease-out;
-        }
+       .hero-content {
+           max-width: 800px;
+           color: white;
+           animation: fadeIn 1.5s ease-out;
+       }
 
-        .hero h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
+       .hero h1 {
+           font-size: 3.5em;
+           font-weight: 700;
+           margin-bottom: 20px;
+           line-height: 1.2;
+       }
 
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-out forwards;
-            animation-delay: 0.5s;
-        }
+       .hero p {
+           font-size: 1.2em;
+           margin-bottom: 30px;
+           opacity: 0;
+           animation: fadeIn 1.5s ease-out forwards;
+           animation-delay: 0.5s;
+       }
 
-        .about {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
+       .about {
+           max-width: 1200px;
+           margin: 100px auto;
+           padding: 0 20px;
+           text-align: center;
+       }
 
-        .about h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
+       .about h2 {
+           font-size: 2.5em;
+           margin-bottom: 30px;
+           color: #2c3e50;
+       }
 
-        .about p {
-            font-size: 1.1em;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: #34495e;
-        }
+       .about p {
+           font-size: 1.1em;
+           max-width: 800px;
+           margin: 0 auto 40px;
+           color: #34495e;
+       }
 
-        .gallery {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+       .gallery {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 40px 20px;
+       }
 
-        .artwork-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
+       .artwork-card {
+           background: white;
+           border-radius: 20px;
+           overflow: hidden;
+           box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+           margin-bottom: 40px;
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+           text-decoration: none;
+           color: inherit;
+           display: block;
+       }
 
-        .artwork-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
+       .artwork-card:hover {
+           transform: translateY(-10px);
+           box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+       }
 
-        .artwork-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+       .artwork-image {
+           width: 100%;
+           height: 400px;
+           object-fit: cover;
+           transition: transform 0.3s ease;
+       }
 
-        .artwork-card:hover .artwork-image {
-            transform: scale(1.05);
-        }
+       .artwork-card:hover .artwork-image {
+           transform: scale(1.05);
+       }
 
-        .artwork-info {
-            padding: 30px;
-        }
+       .artwork-info {
+           padding: 30px;
+       }
 
-        .artwork-title {
-            font-size: 1.8em;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
+       .artwork-title {
+           font-size: 1.8em;
+           color: #2c3e50;
+           margin-bottom: 15px;
+       }
 
-        .artwork-description {
-            color: #666;
-            line-height: 1.6;
-        }
+       .artwork-description {
+           color: #666;
+           line-height: 1.6;
+       }
 
-        .cta-button {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+       .cta-button {
+           display: inline-block;
+           background: #e74c3c;
+           color: white;
+           padding: 15px 40px;
+           border-radius: 50px;
+           text-decoration: none;
+           font-weight: 500;
+           margin-top: 30px;
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+       }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
-        }
+       .cta-button:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+       }
 
-        @keyframes fadeIn {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+       @keyframes fadeIn {
+           from { 
+               opacity: 0;
+               transform: translateY(20px);
+           }
+           to { 
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            
-            .about h2 {
-                font-size: 2em;
-            }
+       @media (max-width: 768px) {
+           .hero h1 {
+               font-size: 2.5em;
+           }
+           
+           .about h2 {
+               font-size: 2em;
+           }
 
-            .artwork-image {
-                height: 300px;
-            }
-        }
-    </style>
+           .artwork-image {
+               height: 300px;
+           }
+       }
+   </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Super-héros du quotidien</h1>
-            <p>Une exposition interactive qui célèbre l'engagement héroïque du personnel hospitalier à travers l'art numérique</p>
-            <a href="#gallery" class="cta-button">Découvrir l'exposition</a>
-        </div>
-    </section>
+   <section class="hero">
+       <div class="hero-content">
+           <h1>Super-héros du quotidien</h1>
+           <p>Une exposition interactive qui célèbre l'engagement héroïque du personnel hospitalier à travers l'art numérique</p>
+           <a href="#gallery" class="cta-button">Découvrir l'exposition</a>
+       </div>
+   </section>
 
-    <section class="about">
-        <h2>L'exposition</h2>
-        <p>À l'Hôpital Nord Franche-Comté, nous mettons en lumière ces femmes et ces hommes qui, chaque jour, incarnent les véritables super-héros de notre société. À travers une série d'œuvres numériques uniques, nous explorons leur dévouement, leur courage et leur humanité.</p>
-    </section>
+   <section class="about">
+       <h2>L'exposition</h2>
+       <p>À l'Hôpital Nord Franche-Comté, nous mettons en lumière ces femmes et ces hommes qui, chaque jour, incarnent les véritables super-héros de notre société. À travers une série d'œuvres numériques uniques, nous explorons leur dévouement, leur courage et leur humanité.</p>
+   </section>
 
-    <section id="gallery" class="gallery">
-        <a href="oeuvre1.html" class="artwork-card">
-            <img class="artwork-image" src="images/oeuvre1.png" alt="L'envol du super-soignant">
-            <div class="artwork-info">
-                <h3 class="artwork-title">L'envol du super-soignant</h3>
-                <p class="artwork-description">Découvrez comment le personnel soignant incarne les valeurs des super-héros dans leur mission quotidienne.</p>
-            </div>
-        </a>
-        <!-- D'autres œuvres seront ajoutées ici -->
-    </section>
+   <section id="gallery" class="gallery">
+       <a href="oeuvre1.html" class="artwork-card">
+           <img class="artwork-image" src="images/oeuvre1.png" alt="L'envol du super-soignant">
+           <div class="artwork-info">
+               <h3 class="artwork-title">L'envol du super-soignant</h3>
+               <p class="artwork-description">Découvrez comment le personnel soignant incarne les valeurs des super-héros dans leur mission quotidienne.</p>
+           </div>
+       </a>
+
+       <a href="oeuvre2.html" class="artwork-card">
+           <img class="artwork-image" src="images/oeuvre2.png" alt="L'équipe des super-héros">
+           <div class="artwork-info">
+               <h3 class="artwork-title">L'équipe des super-héros</h3>
+               <p class="artwork-description">Une équipe soudée de soignants, symboles de force et de diversité, unis dans leur mission de prendre soin des autres.</p>
+           </div>
+       </a>
+
+       <a href="oeuvre3.html" class="artwork-card">
+           <img class="artwork-image" src="images/oeuvre3.png" alt="Les gardiens de l'espoir">
+           <div class="artwork-info">
+               <h3 class="artwork-title">Les gardiens de l'espoir</h3>
+               <p class="artwork-description">La bienveillance et l'humanité au cœur des soins, où chaque sourire partagé devient une victoire sur la maladie.</p>
+           </div>
+       </a>
+   </section>
 </body>
 </html>
